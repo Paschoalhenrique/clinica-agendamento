@@ -7,6 +7,7 @@ import com.clinica.agendamento.model.Agendamento;
 import com.clinica.agendamento.model.Paciente;
 import com.clinica.agendamento.repository.PacienteRepository;
 import com.clinica.agendamento.service.AgendamentoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class AgendamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<AgendamentoResponse> criar(@RequestBody AgendamentoRequest request) {
+    public ResponseEntity<AgendamentoResponse> criar(@Valid @RequestBody AgendamentoRequest request) {
         Paciente paciente = pacienteRepository.findById(request.pacienteId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado"));
 

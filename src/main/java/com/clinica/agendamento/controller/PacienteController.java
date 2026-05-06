@@ -4,6 +4,7 @@ import com.clinica.agendamento.dto.PacienteRequest;
 import com.clinica.agendamento.dto.PacienteResponse;
 import com.clinica.agendamento.model.Paciente;
 import com.clinica.agendamento.repository.PacienteRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class PacienteController {
     }
 
     @PostMapping
-    public ResponseEntity<PacienteResponse> criar(@RequestBody PacienteRequest request) {
+    public ResponseEntity<PacienteResponse> criar(@Valid @RequestBody PacienteRequest request) {
         Paciente paciente = Paciente.builder()
                 .nome(request.nome())
                 .email(request.email())
